@@ -19,54 +19,26 @@
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-      crossorigin="anonymous"
-    ></script>
     <link rel="icon" href="icons/favicon.ico" />
-    <title>SirKnubble´s Repositories - Map</title>
+    <title>Treasure Hunt Map - sirknubble.dev</title>
   </head>
 
   <body>
     <!-- Map-Functions, Controls, Markers, Layers -->
-    <div id="nav-bar">
-      <!-- start nav-bar -->
+    <div id="map" style="width: 100%; height: 100%; background-color: #0fa8d2">
       <div
-        id="nav-header"
-        style="
-          position: relative;
-          top: 80%;
-          left: 0;
-          width: 125px;
-          cursor: pointer;
-        "
+        class="gallery-button"
         onclick="location.href = 'gallery.html'"
-      >
-        &nbsp;<i class="fa-solid fa-images" /><a id="nav-title"
-          >&nbsp;Gallery</a
-        >
-      </div>
-    </div>
-    <div id="nav-bar">
-      <!-- start nav-bar -->
-      <div
-        id="nav-header"
         style="
-          position: relative;
-          top: 90%;
-          left: 0;
-          width: 110px;
-          cursor: pointer;
+          margin-top: -2px;
+          margin-left: 45px;
+          position: absolute;
+          font-size: 18px;
         "
-        onclick="location.href = '../'"
       >
-        &nbsp;<i class="fa-solid fa-house" /><a id="nav-title">&nbsp;Home</a>
+        <a>◀&nbsp;Gallery</a>
       </div>
     </div>
-    <div
-      id="map"
-      style="width: 100%; height: 100%; background-color: #0fa8d2"
-    ></div>
 
     <script>
       //Initialize  Leaflet map
@@ -80,7 +52,7 @@
         [8192, 8192],
       ];
       map.attributionControl.addAttribution(
-        'Original &copy; <a href= "https://github.com/jgardner117">Jesse Gardner</a> | GTA V &copy; <a href= "www.rockstargames.com">Rockstar Games</a>| Icons &copy<a href="https://fontawesome.com/"> Fontawesome</a>',
+        'Original &copy; <a href= "https://github.com/jgardner117">Jesse Gardner</a> | GTA V &copy; <a href= "www.rockstargames.com">Rockstar Games</a>',
       );
       //Initialize each base layer
       var atlas = L.imageOverlay("images/gtav.png", bounds).addTo(map);

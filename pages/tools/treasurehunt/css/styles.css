@@ -61,11 +61,9 @@ body,
 }
 
 .gallery {
-  background-image: url("/assets/images/cat.png");
-  background-color: #372788;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: bottom center;
+  background-color: rgba(15, 15, 15, 1);
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 .gallery-button {

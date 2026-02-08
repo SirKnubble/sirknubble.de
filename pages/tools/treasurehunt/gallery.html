@@ -98,23 +98,7 @@
         border-radius: 5px;
         z-index: 1002;
       }
-      .gallery-button {
-        position: fixed;
-        top: 20px;
-        left: 10px;
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        z-index: 1000;
-        transition: background 0.3s;
-        margin-left: 0px;
-      }
-      .gallery-button:hover {
-        background: rgba(0, 0, 0, 0.9);
-      }
+
       #caption {
         margin: auto;
         display: block;
@@ -128,23 +112,16 @@
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
       crossorigin="anonymous"
     ></script>
-    <!-- Hier prob error, letzte change switched to jquery, danach ohne min version, aber die ging local garnd, daher joar... -->
-    <title>sirknubble.dev - Gallery</title>
+
+    <title>Treasure Hunt Gallery - sirknubble.dev</title>
   </head>
 
-  <body
-    class="gallery"
-    style="
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      color: white;
-      font-family: Arial, sans-serif;
-    "
-  >
+  <body class="gallery">
     <!--  Nav-Bar  -->
     <!--  <script id="replace_with_navbar" src="../js/nav.js"></script>  -->
     <!--  Nav-Bar end -->
-    <div class="gallery-button" onclick="history.back()">
-      <a><i class="fa-solid fa-angle-left"></i>&nbsp;Back</a>
+    <div class="gallery-button" onclick="location.href = 'index.html'">
+      <a><i class="fa-solid fa-angle-left"></i>&nbsp;Map</a>
     </div>
     <hr />
     <div id="links" style="margin-top: 60px"></div>
