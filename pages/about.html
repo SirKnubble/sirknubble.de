@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" oncontextmenu="return true" class="prevent-select">
+<!doctype html>
+<html lang="en" oncontextmenu="return false;" class="prevent-select">
   <head>
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,13 +61,20 @@
               <div class="navbar-nav-links1">
                 <span class="nav-link" style="cursor: not-allowed">Labs</span>
                 <span class="nav-link" style="cursor: not-allowed">Tools</span>
-                <span class="nav-link" style="cursor: not-allowed"
+                <span
+                  class="nav-link"
+                  style="cursor: pointer"
+                  onclick="location.href = 'tools/treasurehunt/gallery.html'"
                   >Gallery</span
                 >
-                <span class="nav-link" style="cursor: not-allowed">About</span>
+                <span class="nav-link" style="cursor: pointer">About</span>
               </div>
               <div class="home navbar-get-started">
-                <span class="navbar-text10">Home</span>
+                <span
+                  class="navbar-text10"
+                  onclick="location.href = '../index.html'"
+                  >Home</span
+                >
               </div>
             </div>
             <div id="open-mobile-menu" class="navbar-hamburger home">
@@ -140,7 +147,7 @@
                   <fragment
                     class="home-fragment2"
                     style="cursor: not-allowed"
-                    onclick="window.open('projects/spotify.html');"
+                    onclick="window.open('projects/spotify.html')"
                   >
                     <span class="navbar-text13 nav-link">
                       <span>Gallery</span>
@@ -177,7 +184,7 @@
                           }
                         });
                       },
-                      true
+                      true,
                     );
                   };
 
@@ -221,7 +228,12 @@
                 <div class="home-buttons">
                   <div
                     class="home-get-started button"
-                    onclick="window.open('https://discord.com/users/473390696192016386', '_blank')"
+                    onclick="
+                      window.open(
+                        'https://discord.com/users/473390696192016386',
+                        '_blank',
+                      )
+                    "
                   >
                     <span class="home-text17">
                       <span>Contact</span>

@@ -2,7 +2,7 @@
 <html lang="en" oncontextmenu="return true;">
   <head>
     <!-- Main -->
-    <link rel="icon" href="/css/assets/images/cat.png" />
+    <link rel="icon" href="assets/images/cat.png" />
     <link rel="stylesheet" href="css/styles.css" />
     <style>
       .lightbox {
@@ -65,7 +65,7 @@
         display: flex;
         gap: 10px;
         max-width: 80%;
-        overflow-x: auto;
+        overflow: hidden;
         z-index: 1002;
       }
       .carousel-thumb {
@@ -123,7 +123,6 @@
     <div class="gallery-button" onclick="location.href = 'index.html'">
       <a><i class="fa-solid fa-angle-left"></i>&nbsp;Map</a>
     </div>
-    <hr />
     <div id="links" style="margin-top: 60px"></div>
     <script>
       const linksDiv = document.getElementById("links");
