@@ -80,8 +80,20 @@ body,
   transition: background 0.3s;
   margin-left: 0px;
 }
+.gallery-button a {
+  color: white;
+  text-decoration: none;
+}
 .gallery-button:hover {
   background: rgba(0, 0, 0, 0.9);
+}
+
+/* Gallery Button on map page (bottom-left) */
+#map .gallery-button {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 20px !important;
+  left: 10px !important;
 }
 
 .cursor {

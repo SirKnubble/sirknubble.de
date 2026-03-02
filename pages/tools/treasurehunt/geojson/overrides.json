@@ -1,0 +1,29 @@
+{
+  "comment": "Manual override of region assignments. Format: { \"treasureNumber\": \"RegionName\" }",
+  "overrides": {
+    "259": "Beach / Coast",
+    "258": "Beach / Coast",
+    "227": "Beach / Coast",
+    "153": "Beach / Coast",
+    "180": "Beach / Coast",
+    "203": "Beach / Coast",
+    "164": "Beach / Coast",
+    "246": "Beach / Coast",
+    "101": "Beach / Coast",
+    "107": "Beach / Coast",
+    "99": "Beach / Coast",
+    "281": "Beach / Coast",
+    "219": "Beach / Coast",
+    "266": "Airport / Port",
+    "85": "Airport / Port",
+    "10": "Grapeseed",
+    "49": "Paleto Bay",
+    "255": "Paleto Bay",
+    "191": "Paleto Bay",
+    "70": "Paleto Bay",
+    "181": "Paleto Bay",
+    "128": "Paleto Bay",
+    "18": "Vinewood / North L.S.",
+    "268": "Grapeseed"
+  }
+}

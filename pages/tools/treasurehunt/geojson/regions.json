@@ -1,0 +1,44 @@
+{
+  "regions": [
+    {
+      "name": "Downtown / South L.S.",
+      "bounds": { "minX": 3200, "maxX": 4200, "minY": 1145, "maxY": 2330 }
+    },
+    {
+      "name": "East L.S. / Mirror Park",
+      "bounds": { "minX": 4200, "maxX": 5000, "minY": 1145, "maxY": 2900 }
+    },
+    {
+      "name": "Vespucci / West L.S.",
+      "bounds": { "minX": 2500, "maxX": 3200, "minY": 1460, "maxY": 2900 }
+    },
+    {
+      "name": "Airport / Port",
+      "bounds": { "minX": 2600, "maxX": 4640, "minY": 420, "maxY": 1145 }
+    },
+    {
+      "name": "Vinewood / North L.S.",
+      "bounds": { "minX": 3200, "maxX": 4200, "minY": 2330, "maxY": 2900 }
+    },
+    {
+      "name": "Sandy Shores",
+      "bounds": { "minX": 3820, "maxX": 5500, "minY": 4260, "maxY": 5300 }
+    },
+    {
+      "name": "Grapeseed",
+      "bounds": { "minX": 4500, "maxX": 5620, "minY": 5300, "maxY": 6400 }
+    },
+    {
+      "name": "Paleto Bay",
+      "bounds": { "minX": 2660, "maxX": 4100, "minY": 6050, "maxY": 7200 }
+    },
+    {
+      "name": "Beach / Coast",
+      "bounds": null
+    },
+    {
+      "name": "Other",
+      "bounds": null
+    }
+  ]
+}

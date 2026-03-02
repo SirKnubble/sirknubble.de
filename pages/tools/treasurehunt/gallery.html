@@ -98,6 +98,20 @@
         border-radius: 5px;
         z-index: 1002;
       }
+      /* align search container buttons with gallery style */
+      #search-container input,
+      #search-container button {
+        background: transparent;
+        color: white;
+        border: none;
+        outline: none;
+      }
+      #search-container input {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      #search-container button:hover {
+        background: rgba(0, 0, 0, 0.9);
+      }
 
       #caption {
         margin: auto;
@@ -107,11 +121,108 @@
         color: #ccc;
         padding: 10px 0;
       }
+
+      .filter-btn {
+        background-color: #444;
+        color: white;
+        border: 2px solid #666;
+        padding: 8px 16px;
+        margin: 5px 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn:hover {
+        background-color: #555;
+        border-color: #888;
+      }
+
+      .filter-btn.active {
+        background-color: #008cba;
+        border-color: #0066cc;
+        font-weight: bold;
+      }
+
+      #map-btn {
+        position: absolute;
+        bottom: 180px;
+        right: 20px;
+        background-color: #008cba;
+        color: white;
+        border: 2px solid #0066cc;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        z-index: 1002;
+      }
+
+      #map-btn:hover {
+        background-color: #006b99;
+        transform: scale(1.05);
+      }
+
+      #region-override-btn {
+        position: absolute;
+        bottom: 240px;
+        right: 20px;
+        background-color: #666;
+        color: white;
+        border: 2px solid #888;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        z-index: 1002;
+      }
+
+      #region-override-btn:hover {
+        background-color: #777;
+      }
+
+      #map-btn {
+        position: absolute;
+        bottom: 180px;
+        right: 20px;
+        background-color: #008cba;
+        color: white;
+        border: 2px solid #0066cc;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        z-index: 1002;
+      }
+
+      #map-btn:hover {
+        background-color: #006b99;
+        transform: scale(1.05);
+      }
+
+      #region-override-btn {
+        position: absolute;
+        bottom: 240px;
+        right: 20px;
+        background-color: #666;
+        color: white;
+        border: 2px solid #888;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        z-index: 1002;
+      }
+
+      #region-override-btn:hover {
+        background-color: #777;
+      }
     </style>
-    <script
-      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-      crossorigin="anonymous"
-    ></script>
 
     <title>Treasure Hunt Gallery - sirknubble.dev</title>
   </head>
@@ -121,63 +232,271 @@
     <!--  <script id="replace_with_navbar" src="../js/nav.js"></script>  -->
     <!--  Nav-Bar end -->
     <div class="gallery-button" onclick="location.href = 'index.html'">
-      <a><i class="fa-solid fa-angle-left"></i>&nbsp;Map</a>
+      <a>‹&nbsp;Map</a>
     </div>
-    <div id="links" style="margin-top: 60px"></div>
+
+    <!-- Filter Container -->
+    <div
+      id="search-container"
+      class="gallery-button"
+      style="top: 20px; right: 20px; bottom: auto; left: auto; padding: 6px"
+    >
+      <input
+        id="search-number"
+        type="number"
+        placeholder="#"
+        style="width: 50px; padding: 4px; margin-right: 4px"
+      />
+      <button id="search-go" style="padding: 4px 8px; cursor: pointer">
+        Search
+      </button>
+    </div>
+    <div
+      id="filter-container"
+      style="margin-top: 60px; margin-bottom: 20px; text-align: center"
+    >
+      <button
+        id="filter-all"
+        class="filter-btn active"
+        onclick="filterByRegion('all')"
+      >
+        All
+      </button>
+      <div id="region-filters" style="display: inline-block"></div>
+    </div>
+
+    <div id="links" style="margin-top: 20px"></div>
     <script>
-      const linksDiv = document.getElementById("links");
-      linksDiv.innerHTML = "";
-      let currentIndex = 0;
-      for (let i = 1; i <= 296; i++) {
-        const a = document.createElement("a");
-        a.href = `images/treasure/treasure${i}.jpg`;
-        a.title = `Treasure ${i}`;
-        const img = document.createElement("img");
-        img.src = `images/treasure/treasure${i}.jpg`;
-        img.alt = `Treasure ${i}`;
-        img.style.width = "100px";
-        img.style.height = "100px";
-        img.style.margin = "5px";
-        img.style.borderRadius = "8px";
-        img.style.transition = "transform 0.3s";
-        img.onmouseover = function () {
-          this.style.transform = "scale(1.05)";
-        };
-        img.onmouseout = function () {
-          this.style.transform = "scale(1)";
-        };
-        img.style.cursor = "pointer";
-        img.dataset.index = i - 1; // 0-based
-        img.onclick = function (event) {
-          event.preventDefault();
-          openLightbox(parseInt(this.dataset.index));
-        };
-        a.appendChild(img);
-        linksDiv.appendChild(a);
+      // Store treasure data with regions
+      let treasures = [];
+      let regions = [];
+      let overrides = {};
+      let currentFilter = "all";
+      let filteredTreasures = [];
+      let currentFilteredIndex = 0;
+
+      // Load regions data
+      async function loadRegions() {
+        try {
+          const response = await fetch("geojson/regions.json");
+          const data = await response.json();
+          regions = data.regions;
+          initializeFilterButtons();
+        } catch (error) {
+          console.error("Error loading regions:", error);
+        }
       }
 
+      // Load overrides data
+      async function loadOverrides() {
+        try {
+          const response = await fetch("geojson/overrides.json");
+          const data = await response.json();
+          overrides = data.overrides || {};
+        } catch (error) {
+          console.error("Error loading overrides:", error);
+        }
+      }
+
+      // Get region based on coordinates, with override support
+      function getRegionForCoordinates(x, y, treasureNumber) {
+        // Check for manual override first
+        if (treasureNumber && overrides[treasureNumber]) {
+          return overrides[treasureNumber];
+        }
+
+        // Otherwise use coordinate-based detection
+        for (let i = 0; i < regions.length; i++) {
+          const bounds = regions[i].bounds;
+          if (!bounds) continue; // skip placeholders/fallback entries
+          if (
+            x >= bounds.minX &&
+            x <= bounds.maxX &&
+            y >= bounds.minY &&
+            y <= bounds.maxY
+          ) {
+            return regions[i].name;
+          }
+        }
+        return "Other";
+      }
+
+      // Initialize filter buttons
+      function initializeFilterButtons() {
+        const filterContainer = document.getElementById("region-filters");
+        filterContainer.innerHTML = "";
+
+        const debugParams = new URLSearchParams(window.location.search);
+        const showDebug = debugParams.has("debug");
+
+        // Get unique regions from treasures
+        const uniqueRegions = [
+          ...new Set(treasures.map((t) => t.region)),
+        ].sort();
+
+        // when debug, include null-bound placeholders
+        if (showDebug) {
+          regions.forEach((r) => {
+            if (r.bounds === null && !uniqueRegions.includes(r.name)) {
+              uniqueRegions.push(r.name);
+            }
+          });
+          uniqueRegions.sort();
+        }
+
+        uniqueRegions.forEach((region) => {
+          const count = treasures.filter((t) => t.region === region).length;
+          const btn = document.createElement("button");
+          btn.className = "filter-btn";
+          btn.innerText = `${region} (${count})`;
+          btn.onclick = () => filterByRegion(region);
+          btn.dataset.region = region;
+          if (count === 0) btn.style.opacity = "0.5";
+          filterContainer.appendChild(btn);
+        });
+      }
+
+      // Filter images by region
+      function filterByRegion(region) {
+        currentFilter = region;
+        currentFilteredIndex = 0;
+
+        // Update button states
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        if (region === "all") {
+          document.getElementById("filter-all").classList.add("active");
+        } else {
+          document
+            .querySelector(`[data-region="${region}"]`)
+            .classList.add("active");
+        }
+
+        // Build filtered treasures array
+        filteredTreasures = treasures.filter(
+          (t) => region === "all" || t.region === region,
+        );
+
+        // Filter and display images
+        const linksDiv = document.getElementById("links");
+        linksDiv.innerHTML = "";
+
+        filteredTreasures.forEach((treasure, filteredIndex) => {
+          const a = document.createElement("a");
+          a.href = treasure.img;
+          a.title = treasure.title;
+          const img = document.createElement("img");
+          img.src = treasure.img;
+          img.alt = treasure.title;
+          img.style.width = "100px";
+          img.style.height = "100px";
+          img.style.margin = "5px";
+          img.style.borderRadius = "8px";
+          img.style.transition = "transform 0.3s";
+          img.onmouseover = function () {
+            this.style.transform = "scale(1.05)";
+          };
+          img.onmouseout = function () {
+            this.style.transform = "scale(1)";
+          };
+          img.style.cursor = "pointer";
+          img.dataset.filteredIndex = filteredIndex;
+          img.dataset.treasureIndex = treasure.number;
+          img.onclick = function (event) {
+            event.preventDefault();
+            openLightbox(parseInt(this.dataset.filteredIndex));
+          };
+          a.appendChild(img);
+          linksDiv.appendChild(a);
+        });
+      }
+
+      // Initialize treasures data
+      async function initializeTreasures() {
+        try {
+          const response = await fetch("geojson/treasure.json");
+          const data = await response.json();
+
+          treasures = data.features.map((feature, index) => {
+            const coords = feature.geometry.coordinates;
+            const treasureNum = index + 1;
+            const region = getRegionForCoordinates(
+              coords[0],
+              coords[1],
+              treasureNum,
+            );
+            return {
+              number: treasureNum,
+              img: feature.properties.imgname,
+              title: feature.properties.name || `Treasure ${treasureNum}`,
+              region: region,
+              coordinates: coords,
+            };
+          });
+
+          initializeFilterButtons();
+          filterByRegion("all");
+        } catch (error) {
+          console.error("Error loading treasures:", error);
+          // Fallback: create treasures without regions
+          for (let i = 1; i <= 296; i++) {
+            treasures.push({
+              number: i,
+              img: `images/treasure/treasure${i}.jpg`,
+              title: `Treasure ${i}`,
+              region: "Other",
+              coordinates: [0, 0],
+            });
+          }
+          filterByRegion("all");
+        }
+      }
+
+      // Load regions first, then treasures
+      window.addEventListener("load", () => {
+        loadRegions().then(() => {
+          loadOverrides().then(() => {
+            initializeTreasures();
+          });
+        });
+      });
+
       function openLightbox(index) {
-        currentIndex = index;
+        currentFilteredIndex = index;
         const lightbox = document.getElementById("lightbox");
         const lightboxImg = document.getElementById("lightbox-img");
         const captionDiv = document.getElementById("caption");
         const input = document.getElementById("image-input");
+
+        // Get treasure from filtered array
+        const treasure = filteredTreasures[index];
+
         lightbox.style.display = "block";
-        lightboxImg.src = `images/treasure/treasure${index + 1}.jpg`;
-        captionDiv.innerHTML = `Treasure ${index + 1} von 296`;
-        input.value = index + 1;
+        lightboxImg.src = treasure.img;
+
+        if (treasure) {
+          captionDiv.innerHTML = `<strong>${treasure.title}</strong><br>Region: ${treasure.region}<br>Treasure ${treasure.number} / ${filteredTreasures.length}`;
+        } else {
+          captionDiv.innerHTML = `Treasure / ${filteredTreasures.length}`;
+        }
+
+        input.value = treasure.number;
         lightboxImg.classList.remove("zoomed");
-        updateCarousel();
+        updateCarousel(index);
       }
 
       function nextImage() {
-        currentIndex = (currentIndex + 1) % 296;
-        openLightbox(currentIndex);
+        currentFilteredIndex =
+          (currentFilteredIndex + 1) % filteredTreasures.length;
+        openLightbox(currentFilteredIndex);
       }
 
       function prevImage() {
-        currentIndex = (currentIndex - 1 + 296) % 296;
-        openLightbox(currentIndex);
+        currentFilteredIndex =
+          (currentFilteredIndex - 1 + filteredTreasures.length) %
+          filteredTreasures.length;
+        openLightbox(currentFilteredIndex);
       }
 
       let intervalId = null;
@@ -199,13 +518,16 @@
         }
       }
 
-      function updateCarousel() {
+      function updateCarousel(currentIdx) {
         const carousel = document.getElementById("carousel");
         carousel.innerHTML = "";
         for (let i = -7; i <= 7; i++) {
-          let idx = (currentIndex + i + 296) % 296;
+          let idx =
+            (currentIdx + i + filteredTreasures.length) %
+            filteredTreasures.length;
+          const treasure = filteredTreasures[idx];
           const img = document.createElement("img");
-          img.src = `images/treasure/treasure${idx + 1}.jpg`;
+          img.src = treasure.img;
           img.className = "carousel-thumb";
           if (i === 0) img.classList.add("active");
           img.onclick = () => openLightbox(idx);
@@ -247,8 +569,11 @@
         document.getElementById("next-btn").onmouseleave = stopInterval;
         document.getElementById("image-input").onchange = function () {
           const num = parseInt(this.value);
-          if (num >= 1 && num <= 296) {
-            openLightbox(num - 1);
+          const filteredIndex = filteredTreasures.findIndex(
+            (t) => t.number === num,
+          );
+          if (filteredIndex !== -1) {
+            openLightbox(filteredIndex);
           }
         };
         console.log("Handlers bound");
@@ -283,8 +608,90 @@
 
         document.getElementById("image-input").onchange = function () {
           const num = parseInt(this.value);
-          if (num >= 1 && num <= 296) {
-            openLightbox(num - 1);
+          const filteredIndex = filteredTreasures.findIndex(
+            (t) => t.number === num,
+          );
+          if (filteredIndex !== -1) {
+            openLightbox(filteredIndex);
+          }
+        };
+
+        // Search field handler
+        document.getElementById("search-go").onclick = function () {
+          const num = parseInt(document.getElementById("search-number").value);
+          if (isNaN(num)) return;
+          const idx = treasures.findIndex((t) => t.number === num);
+          if (idx !== -1) {
+            // show all and open
+            filteredTreasures = treasures.slice();
+            openLightbox(idx);
+          } else {
+            alert("Treasure not found");
+          }
+        };
+
+        document
+          .getElementById("search-number")
+          .addEventListener("keydown", function (e) {
+            if (e.key === "Enter") document.getElementById("search-go").click();
+          });
+
+        // Map button handler
+        document.getElementById("map-btn").onclick = function () {
+          const treasure = filteredTreasures[currentFilteredIndex];
+          if (treasure) {
+            // Navigate to map and pass treasure number as parameter
+            window.location.href = `index.html?treasureId=${treasure.number}`;
+          }
+        };
+
+        // Region override button handler - only show with debug
+        const debugParams = new URLSearchParams(window.location.search);
+        const showDebug = debugParams.has("debug");
+        const regionOverrideBtn = document.getElementById(
+          "region-override-btn",
+        );
+
+        if (!showDebug) {
+          regionOverrideBtn.style.display = "none";
+        }
+
+        regionOverrideBtn.onclick = function () {
+          const treasure = filteredTreasures[currentFilteredIndex];
+          if (!treasure) return;
+
+          const regions = document.querySelectorAll(".filter-btn");
+          const availableRegions = [];
+          regions.forEach((btn) => {
+            if (btn.textContent.includes("(")) {
+              const name = btn.textContent
+                .substring(0, btn.textContent.indexOf("("))
+                .trim();
+              if (
+                name &&
+                availableRegions.indexOf(name) === -1 &&
+                name !== "All"
+              ) {
+                availableRegions.push(name);
+              }
+            }
+          });
+
+          const regionsList = availableRegions.join(", ");
+          const newRegion = prompt(
+            `Current region: ${treasure.region}\n\nEnter new region:\n${regionsList}`,
+            treasure.region,
+          );
+          if (newRegion && newRegion !== treasure.region) {
+            treasure.region = newRegion;
+            overrides[treasure.number] = newRegion;
+
+            // Update display
+            const captionDiv = document.getElementById("caption");
+            captionDiv.innerHTML = `<strong>${treasure.title}</strong><br>Region: ${treasure.region}<br>Treasure ${treasure.number} / ${filteredTreasures.length}`;
+
+            const instructionText = `New Region: ${newRegion}\n\nTo save, edit file:\ngeojson/overrides.json\n\nAdd this line:\n"${treasure.number}": "${newRegion}"`;
+            alert(instructionText);
           }
         };
       });
@@ -296,12 +703,21 @@
       <input
         type="number"
         id="image-input"
-        placeholder="Bild Nr."
+        placeholder="Treasure No."
         min="1"
         max="296"
       />
       <button id="prev-btn">&lt;</button>
       <button id="next-btn">&gt;</button>
+      <button
+        id="region-override-btn"
+        title="Region für dieses Bild überschreiben"
+      >
+        Edit Region
+      </button>
+      <button id="map-btn" title="Show this treasure on the map">
+        🗺️ Show on Map
+      </button>
       <img class="lightbox-content" id="lightbox-img" />
       <div id="caption"></div>
       <div id="carousel"></div>

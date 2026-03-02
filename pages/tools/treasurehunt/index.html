@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" oncontextmenu="return true;">
+<html lang="en" oncontextmenu="return false;">
   <head>
     <!-- Main -->
     <link
@@ -19,6 +19,7 @@
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
       crossorigin="anonymous"
     ></script>
+
     <link rel="icon" href="icons/favicon.ico" />
     <title>Treasure Hunt Map - sirknubble.dev</title>
   </head>
@@ -26,17 +27,13 @@
   <body>
     <!-- Map-Functions, Controls, Markers, Layers -->
     <div id="map" style="width: 100%; height: 100%; background-color: #0fa8d2">
+      <!-- duplicate button in bottom-left for quick access -->
       <div
         class="gallery-button"
         onclick="location.href = 'gallery.html'"
-        style="
-          margin-top: -2px;
-          margin-left: 45px;
-          position: absolute;
-          font-size: 18px;
-        "
+        style="bottom: 20px; left: 10px; position: absolute; font-size: 18px"
       >
-        <a>◀&nbsp;Gallery</a>
+        <a>‹&nbsp;Gallery</a>
       </div>
     </div>
 
@@ -45,6 +42,8 @@
       var map = L.map("map", {
         crs: L.CRS.Simple,
         minZoom: -3,
+        zoomSnap: 0.5,
+        zoomDelta: 0.5,
         maxBoundsViscosity: 1.0,
       });
       var bounds = [
@@ -74,6 +73,7 @@
           });
           var marker = L.marker(latlng, {
             icon: icn,
+            title: "Right-click to copy share link",
           });
           marker.bindPopup(
             "<font color=white><h4>" +
@@ -83,11 +83,65 @@
               feature.properties.imgname +
               "' class='popupImage'></font>",
           );
+          // share on right-click
+          marker.on("contextmenu", function () {
+            var match = feature.properties.imgname.match(/(\d+)\.jpg$/);
+            if (match) {
+              var id = match[1];
+              var share =
+                window.location.origin +
+                window.location.pathname +
+                "?treasureId=" +
+                id;
+              navigator.clipboard.writeText(share).then(function () {
+                alert("Share link copied to clipboard:\n" + share);
+              });
+            }
+          });
           return marker;
         },
       });
       $.getJSON("geojson/treasure.json", function (data) {
         treasure.addData(data).addTo(map); // WICHTIG !!! .addTo(map), um des beim Start standardmäßig zu aktivieren.
+
+        // Check if treasureId was passed from gallery
+        const params = new URLSearchParams(window.location.search);
+        const treasureId = params.get("treasureId");
+        if (treasureId) {
+          // Find and highlight the treasure
+          let foundTreasure = null;
+          data.features.forEach((feature, index) => {
+            if (index + 1 === parseInt(treasureId)) {
+              foundTreasure = feature;
+            }
+          });
+
+          if (foundTreasure) {
+            const coords = foundTreasure.geometry.coordinates;
+            // Zoom to treasure location (very low zoom = wide view)
+            map.setView([coords[1], coords[0]], 0.5);
+
+            // Find and open the marker popup
+            setTimeout(() => {
+              treasure.eachLayer(function (layer) {
+                if (
+                  layer.feature &&
+                  layer.feature.properties.imgname ===
+                    foundTreasure.properties.imgname
+                ) {
+                  layer.openPopup();
+                }
+              });
+            }, 500);
+
+            // Remove treasureId from URL (optional, for cleaner history)
+            window.history.replaceState(
+              {},
+              document.title,
+              window.location.pathname,
+            );
+          }
+        }
       });
 
       var sprayspots = L.geoJson(null, {
@@ -115,12 +169,36 @@
         sprayspots.addData(data); // WICHTIG !!! .addTo(map), um des beim Start standardmäßig zu aktivieren.
       });
 
+      // Load and display regions
+      var regionsLayer = L.layerGroup();
+      $.getJSON("geojson/regions.json", function (data) {
+        data.regions.forEach(function (region) {
+          if (region.bounds) {
+            var rect = L.rectangle(
+              [
+                [region.bounds.minY, region.bounds.minX],
+                [region.bounds.maxY, region.bounds.maxX],
+              ],
+              {
+                color: "#0066cc",
+                weight: 2,
+                opacity: 0.6,
+                fill: false,
+              },
+            );
+            rect.bindPopup("<strong>" + region.name + "</strong>");
+            regionsLayer.addLayer(rect);
+          }
+        });
+      });
+
       //Create titles for each layer with mini icons to add to the Control
       var overlay = {
         "<img src='icons/schatz.png' align='center' width='30' height='30' /> Treasures":
           treasure,
         "<img src='icons/spray-can-sparkles-solid.svg' align='center' width='30' height='30'/> Soon...":
           sprayspots,
+        Regions: regionsLayer,
       };
 
       //Create titles for each baselayer to add to the Control
