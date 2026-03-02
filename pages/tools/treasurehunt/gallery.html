@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" oncontextmenu="return true;">
+<html lang="en" oncontextmenu="return false;">
   <head>
     <!-- Main -->
     <link rel="icon" href="icons/favicon.ico" />
@@ -145,26 +145,6 @@
         font-weight: bold;
       }
 
-      #map-btn {
-        position: absolute;
-        bottom: 180px;
-        right: 20px;
-        background-color: #008cba;
-        color: white;
-        border: 2px solid #0066cc;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        z-index: 1002;
-      }
-
-      #map-btn:hover {
-        background-color: #006b99;
-        transform: scale(1.05);
-      }
-
       #region-override-btn {
         position: absolute;
         bottom: 240px;
@@ -186,15 +166,15 @@
 
       #map-btn {
         position: absolute;
-        bottom: 180px;
-        right: 20px;
-        background-color: #008cba;
+        bottom: 120px;
+        right: 400px;
+        background-color: #013647;
         color: white;
-        border: 2px solid #0066cc;
+        border: 2px solid #001d3a;
         padding: 10px 15px;
         border-radius: 5px;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 16px;
         transition: all 0.3s ease;
         z-index: 1002;
       }
@@ -204,6 +184,25 @@
         transform: scale(1.05);
       }
 
+      #share-btn {
+        position: absolute;
+        bottom: 120px;
+        left: 400px;
+        background-color: #013647;
+        color: white;
+        border: 2px solid #001d3a;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        z-index: 1002;
+      }
+
+      #share-btn:hover {
+        background-color: #006b99;
+        transform: scale(1.05);
+      }
       #region-override-btn {
         position: absolute;
         bottom: 240px;
@@ -459,11 +458,35 @@
         }
       }
 
-      // Load regions first, then treasures
+      // Load regions first, then treasures. After treasures are initialized,
+      // check for a ?treasureId=... param and open the corresponding image.
       window.addEventListener("load", () => {
         loadRegions().then(() => {
           loadOverrides().then(() => {
-            initializeTreasures();
+            initializeTreasures().then(() => {
+              const params = new URLSearchParams(window.location.search);
+              const treasureIdParam = params.get("treasureId");
+              if (treasureIdParam) {
+                const num = parseInt(treasureIdParam);
+                const idx = treasures.findIndex((t) => t.number === num);
+                if (idx !== -1) {
+                  // show all and open the specific treasure
+                  filteredTreasures = treasures.slice();
+                  openLightbox(idx);
+
+                  // clean URL so subsequent navigation is tidy
+                  try {
+                    window.history.replaceState(
+                      {},
+                      document.title,
+                      window.location.pathname,
+                    );
+                  } catch (e) {
+                    /* ignore */
+                  }
+                }
+              }
+            });
           });
         });
       });
@@ -651,6 +674,27 @@
           }
         };
 
+        // Share button handler - copy a link to this treasure (opens gallery with that image)
+        const shareBtn = document.getElementById("share-btn");
+        if (shareBtn) {
+          shareBtn.onclick = function () {
+            const treasure = filteredTreasures[currentFilteredIndex];
+            if (!treasure) return;
+            const share =
+              window.location.origin + window.location.pathname +
+              `?treasureId=${treasure.number}`;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard
+                .writeText(share)
+                .then(() => alert("Share link copied to clipboard:\n" + share))
+                .catch(() => prompt("Copy this link:", share));
+            } else {
+              // fallback
+              prompt("Copy this link:", share);
+            }
+          };
+        }
+
         // Region override button handler - only show with debug
         const debugParams = new URLSearchParams(window.location.search);
         const showDebug = debugParams.has("debug");
@@ -715,14 +759,24 @@
       />
       <button id="prev-btn">&lt;</button>
       <button id="next-btn">&gt;</button>
+            <button id="share-btn" title="Share this treasure">
+        Share&nbsp;&nbsp;<img
+          src="icons/export.png"
+          alt="Treasure"
+          class="nav-icon"
+      </button>
       <button
         id="region-override-btn"
-        title="Region für dieses Bild überschreiben"
+        title="Override region for this treasure (debug only)"
       >
         Edit Region
       </button>
-      <button id="map-btn" title="Show this treasure on the map">
-        🗺️ Show on Map
+      <button id="map-btn" title="Open this treasure on the map">
+        Find&nbsp;&nbsp;<img
+          src="icons/treasure-map.png"
+          alt="map"
+          class="nav-icon"
+        />
       </button>
       <img class="lightbox-content" id="lightbox-img" />
       <div id="caption"></div>
