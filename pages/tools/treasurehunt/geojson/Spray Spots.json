@@ -5,12 +5,540 @@
       "type": "Feature",
       "properties": {
         "name": "Spray Spot 1",
-        "imgname":"images/carwash/carwashstrawberry.png",
+        "imgname": "images/sprayspot/sprayspot1.jpg",
         "ptype": "Spray Spot"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [3790.625, 1749.25]
+        "coordinates": [3091.47083, 2010.746524]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 2",
+        "imgname": "images/sprayspot/sprayspot2.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3035.255844, 1977.777679]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 3",
+        "imgname": "images/sprayspot/sprayspot3.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3120.46221, 1946.664971]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 4",
+        "imgname": "images/sprayspot/sprayspot4.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3067.605981, 1916.96649]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 5",
+        "imgname": "images/sprayspot/sprayspot5.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2932.195035, 1860.486333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 6",
+        "imgname": "images/sprayspot/sprayspot6.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2884.995662, 1842.366721]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 7",
+        "imgname": "images/sprayspot/sprayspot7.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2952.701126, 1794.813796]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 8",
+        "imgname": "images/sprayspot/sprayspot8.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2913.810259, 1776.075468]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 9",
+        "imgname": "images/sprayspot/sprayspot9.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3002.728932, 1715.441065]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 10",
+        "imgname": "images/sprayspot/sprayspot10.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2992.741057, 1644.99554]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 11",
+        "imgname": "images/sprayspot/sprayspot11.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3028.8035, 1673.191422]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 12",
+        "imgname": "images/sprayspot/sprayspot12.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3060.888468, 1633.770221]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 13",
+        "imgname": "images/sprayspot/sprayspot13.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3523.624999, 1658.500008]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 14",
+        "imgname": "images/sprayspot/sprayspot14.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3563.124982, 1802.375011]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 15",
+        "imgname": "images/sprayspot/sprayspot15.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3648.374975, 1806.875011]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 16",
+        "imgname": "images/sprayspot/sprayspot16.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3734.312486, 1801.125006]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 17",
+        "imgname": "images/sprayspot/sprayspot17.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3858.37499, 1820.812504]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 18",
+        "imgname": "images/sprayspot/sprayspot18.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3919.249987, 1774.62501]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 19",
+        "imgname": "images/sprayspot/sprayspot19.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3853.937495, 1679.750006]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 20",
+        "imgname": "images/sprayspot/sprayspot20.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3730.124998, 1668.000015]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 21",
+        "imgname": "images/sprayspot/sprayspot21.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3799.874987, 1594.500023]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 22",
+        "imgname": "images/sprayspot/sprayspot22.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3782.499984, 1517.000025]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 23",
+        "imgname": "images/sprayspot/sprayspot23.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3879.374979, 1551.125004]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 24",
+        "imgname": "images/sprayspot/sprayspot24.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3952.374968, 1529.875006]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 25",
+        "imgname": "images/sprayspot/sprayspot25.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3883.562492, 1446.687505]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 26",
+        "imgname": "images/sprayspot/sprayspot26.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3911.187491, 1365.437505]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 27",
+        "imgname": "images/sprayspot/sprayspot27.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3980.812497, 1291.593751]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 28",
+        "imgname": "images/sprayspot/sprayspot28.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4078.749981, 1777.625008]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 29",
+        "imgname": "images/sprayspot/sprayspot29.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4003.49997, 1715.500022]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 30",
+        "imgname": "images/sprayspot/sprayspot30.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4114.654316, 1616.446104]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 31",
+        "imgname": "images/sprayspot/sprayspot31.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4017.427148, 1581.797876]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 32",
+        "imgname": "images/sprayspot/sprayspot32.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4056.848367, 1528.94165]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 33",
+        "imgname": "images/sprayspot/sprayspot33.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4007.704452, 1458.584515]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 34",
+        "imgname": "images/sprayspot/sprayspot34.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4256.429243, 1657.988634]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 35",
+        "imgname": "images/sprayspot/sprayspot35.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4515.999963, 1526.500007]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 36",
+        "imgname": "images/sprayspot/sprayspot36.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4668.999945, 1651.75]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 37",
+        "imgname": "images/sprayspot/sprayspot37.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4578.999958, 1514.500016]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 38",
+        "imgname": "images/sprayspot/sprayspot38.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4404.499955, 1474.500014]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 39",
+        "imgname": "images/sprayspot/sprayspot39.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4419.749953, 1388.500009]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 40",
+        "imgname": "images/sprayspot/sprayspot40.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4416.124977, 1345.250007]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 41",
+        "imgname": "images/sprayspot/sprayspot41.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4341.624979, 1347.750008]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 42",
+        "imgname": "images/sprayspot/sprayspot42.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4608.374968, 1393.250007]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 43",
+        "imgname": "images/sprayspot/sprayspot43.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4378.249954, 1237.750024]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 44",
+        "imgname": "images/sprayspot/sprayspot44.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4297.374982, 1119.750011]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spray Spot 45",
+        "imgname": "images/sprayspot/sprayspot45.jpg",
+        "ptype": "Spray Spot"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4403.249946, 1069.500029]
       }
     }
   ]

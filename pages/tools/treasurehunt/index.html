@@ -202,7 +202,7 @@
       var overlay = {
         "<img src='icons/schatz.png' align='center' width='30' height='30' /> Treasures":
           treasure,
-        "<img src='icons/spray-can-sparkles-solid.svg' align='center' width='30' height='30'/> Soon...":
+        "<img src='icons/spray-can-sparkles-solid.svg' align='center' width='30' height='30'/> Spray Spots":
           sprayspots,
         Regions: regionsLayer,
       };
@@ -256,7 +256,7 @@
       }
       if (debug) {
         map.on("click", (e) => {
-          console.log(`L.marker([${e.latlng.lat}, ${e.latlng.lng}])`);
+          console.log(`L.marker([${e.latlng.lng}, ${e.latlng.lat}])`);
         });
       }
       if (debug) {
@@ -264,7 +264,7 @@
           L.marker(e.latlng)
             .addTo(map)
             .bindPopup(
-              `[${e.latlng.lat.toFixed(6)}, ${e.latlng.lng.toFixed(6)}]`,
+              `[${e.latlng.lng.toFixed(6)}, ${e.latlng.lat.toFixed(6)}]`,
             )
             .openPopup();
         });
