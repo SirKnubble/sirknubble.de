@@ -34,7 +34,9 @@ sirknubble.github.io
 ### ToDo:
 
 - Config Cursor Circle Zoom :hover
-- Fix Gallery Script
+- Add Green/Redzones as regions to map
+- Add images/sprayspot/sprayspot{0}.jpg
+- Change Spraycan icon (thin, more transparent)
 
 <hr/>
 <br clear="both">
